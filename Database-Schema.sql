@@ -141,3 +141,23 @@ FROM Equipment
 JOIN Event ON Equipment. Sport = Event. Event_Type
 GROUP BY Equipment. Equipment Type
 ORDER BY Events_Using_Equipment;
+
+CREATE TABLE Athlete_Performance (
+    Performance_ID INT PRIMARY KEY,
+    Athlete_ID INT,
+    Event_ID INT,
+    Performance_Score FLOAT,
+    Medal_Type VARCHAR(50),
+    FOREIGN KEY (Athlete_ID) REFERENCES Athlete(Athlete_ID),
+    FOREIGN KEY (Event_ID) REFERENCES Event(Event_ID)
+);
+CREATE TABLE Event_Schedule (
+    Schedule_ID INT PRIMARY KEY,
+    Event_ID INT,
+    Volunteer_ID INT,
+    Equipment_ID INT,
+    Schedule_Time TIMESTAMP,
+    FOREIGN KEY (Event_ID) REFERENCES Event(Event_ID),
+    FOREIGN KEY (Volunteer_ID) REFERENCES Volunteer(Volunteer_ID),
+    FOREIGN KEY (Equipment_ID) REFERENCES Equipment(Equipment_ID)
+);
